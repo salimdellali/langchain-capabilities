@@ -9,29 +9,30 @@ import { StringOutputParser } from "@langchain/core/output_parsers"
 const model = new ChatGoogleGenerativeAI({
   apiKey: process.env.GEMINI_API_KEY!,
   model: "gemini-2.0-flash",
-  temperature: 2,
+  temperature: 2, // 2 for most creative
 })
 
 // Create a prompt template
 const promptTemplate = PromptTemplate.fromTemplate(
-  "Tell me a {adjective} joke about {topic}."
+  "Share an interesting fact about {topic} in {nbWords} words."
 )
 
 // Create an output parser
-const outputParser = new StringOutputParser()
+const stringOutputParser = new StringOutputParser()
 
 // Chain them together
-const chain = promptTemplate.pipe(model).pipe(outputParser)
+const chain = promptTemplate.pipe(model).pipe(stringOutputParser)
 
 // Use the chain
 async function main(): Promise<void> {
   try {
     const result = await chain.invoke({
-      adjective: "hilarious", // example adjectives: funny, silly, absurd, hilarious
-      topic: "AI", // example topics: programming, AI, cats, Canada
+      topic: "French colonization of Algeria",
+      nbWords: 100,
     })
 
-    console.log("AI Response:", result)
+    console.log("AI Response:")
+    console.log(result)
   } catch (error) {
     console.error("Error:", error)
   }

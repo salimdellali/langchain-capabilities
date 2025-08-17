@@ -1,5 +1,5 @@
 {
-  "name": "langchain",
+  "name": "langchain-capabilities",
   "version": "1.0.0",
   "description": "Testing LangChain capabilities",
   "main": "index.js",
@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
+    "run:intro": "node --no-warnings --loader ts-node/esm src/intro/index.ts",
     "start": "node dist/index.js",
-    "start:ts": "ts-node --esm src/index.ts",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
