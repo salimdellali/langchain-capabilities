@@ -28,7 +28,7 @@ async function main(): Promise<void> {
   try {
     const result = await chain.invoke({
       topic: "French colonization of Algeria",
-      nbWords: 100,
+      nbWords: 20,
     })
 
     console.log("AI Response:")
