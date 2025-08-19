@@ -2,11 +2,7 @@ import * as dotenv from "dotenv"
 dotenv.config()
 
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai"
-import {
-  readFeedback,
-  saveAnalysis,
-  listInputFiles,
-} from "./services/fileService.js"
+import { readFeedback, saveAnalysis } from "./services/fileService.js"
 import { executePipeline } from "./services/orchestrator.js"
 
 // LLM Configuration

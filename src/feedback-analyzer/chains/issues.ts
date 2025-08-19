@@ -3,10 +3,10 @@ import { RunnableSequence } from "@langchain/core/runnables"
 import { StructuredOutputParser } from "langchain/output_parsers"
 import { PromptTemplate } from "@langchain/core/prompts"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
-import type { SentimentAnalysis } from "./sentiment.js"
+import type { Sentiment } from "./sentiment.js"
 
 // Schema
-export const KeyIssuesSchema = z.object({
+export const IssuesSchema = z.object({
   issues: z
     .array(
       z.object({
@@ -25,7 +25,7 @@ export const KeyIssuesSchema = z.object({
     .describe("The most critical issue that needs immediate attention"),
 })
 
-export type IssuesAnalysis = z.infer<typeof KeyIssuesSchema>
+export type Issues = z.infer<typeof IssuesSchema>
 
 // Prompt
 const issuesPrompt = PromptTemplate.fromTemplate(`
@@ -43,21 +43,19 @@ Sentiment Analysis: {sentiment_analysis}
 {format_instructions}
 `)
 
+type IssuesInput = { feedback: string; sentiment_analysis: Sentiment }
+
 // Runnable
 export const createIssuesRunnable = (llm: ChatGoogleGenerativeAI) => {
-  const outputParser = StructuredOutputParser.fromZodSchema(KeyIssuesSchema)
+  const outputParser = StructuredOutputParser.fromZodSchema(IssuesSchema)
+  const formatInstructions = outputParser.getFormatInstructions()
 
   return RunnableSequence.from([
     {
-      feedback: (input: {
-        feedback: string
-        sentiment_analysis: SentimentAnalysis
-      }) => input.feedback,
-      sentiment_analysis: (input: {
-        feedback: string
-        sentiment_analysis: SentimentAnalysis
-      }) => JSON.stringify(input.sentiment_analysis),
-      format_instructions: () => outputParser.getFormatInstructions(),
+      feedback: (input: IssuesInput) => input.feedback,
+      sentiment_analysis: (input: IssuesInput) =>
+        JSON.stringify(input.sentiment_analysis),
+      format_instructions: () => formatInstructions,
     },
     issuesPrompt,
     llm,

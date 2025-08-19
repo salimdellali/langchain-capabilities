@@ -3,11 +3,11 @@ import { RunnableSequence } from "@langchain/core/runnables"
 import { StructuredOutputParser } from "langchain/output_parsers"
 import { PromptTemplate } from "@langchain/core/prompts"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
-import type { SentimentAnalysis } from "./sentiment.js"
-import type { IssuesAnalysis } from "./issues.js"
+import type { Sentiment } from "./sentiment.js"
+import type { Issues } from "./issues.js"
 
 // Schema
-export const ActionPlanSchema = z.object({
+export const ActionsSchema = z.object({
   priority: z
     .enum(["low", "medium", "high", "critical"])
     .describe("Overall priority for this feedback"),
@@ -27,10 +27,10 @@ export const ActionPlanSchema = z.object({
     .describe("Whether direct customer follow-up is needed"),
 })
 
-export type ActionPlan = z.infer<typeof ActionPlanSchema>
+export type Actions = z.infer<typeof ActionsSchema>
 
 // Prompt
-const actionPrompt = PromptTemplate.fromTemplate(`
+const actionsPrompt = PromptTemplate.fromTemplate(`
 You are a senior customer success manager creating an action plan. Based on the analysis, develop a comprehensive, executable plan.
 
 Consider:
@@ -49,30 +49,27 @@ Create actionable recommendations with clear ownership and timelines.
 {format_instructions}
 `)
 
+type ActionsInput = {
+  feedback: string
+  sentiment_analysis: Sentiment
+  issues_analysis: Issues
+}
+
 // Runnable
 export const createActionRunnable = (llm: ChatGoogleGenerativeAI) => {
-  const outputParser = StructuredOutputParser.fromZodSchema(ActionPlanSchema)
+  const outputParser = StructuredOutputParser.fromZodSchema(ActionsSchema)
+  const formatInstructions = outputParser.getFormatInstructions()
 
   return RunnableSequence.from([
     {
-      feedback: (input: {
-        feedback: string
-        sentiment_analysis: SentimentAnalysis
-        issues_analysis: IssuesAnalysis
-      }) => input.feedback,
-      sentiment_analysis: (input: {
-        feedback: string
-        sentiment_analysis: SentimentAnalysis
-        issues_analysis: IssuesAnalysis
-      }) => JSON.stringify(input.sentiment_analysis),
-      issues_analysis: (input: {
-        feedback: string
-        sentiment_analysis: SentimentAnalysis
-        issues_analysis: IssuesAnalysis
-      }) => JSON.stringify(input.issues_analysis),
-      format_instructions: () => outputParser.getFormatInstructions(),
+      feedback: (input: ActionsInput) => input.feedback,
+      sentiment_analysis: (input: ActionsInput) =>
+        JSON.stringify(input.sentiment_analysis),
+      issues_analysis: (input: ActionsInput) =>
+        JSON.stringify(input.issues_analysis),
+      format_instructions: () => formatInstructions,
     },
-    actionPrompt,
+    actionsPrompt,
     llm,
     outputParser,
   ])

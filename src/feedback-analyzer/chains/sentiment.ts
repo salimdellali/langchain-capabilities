@@ -19,11 +19,12 @@ export const SentimentSchema = z.object({
     .describe("Brief explanation for the sentiment classification"),
 })
 
-export type SentimentAnalysis = z.infer<typeof SentimentSchema>
+export type Sentiment = z.infer<typeof SentimentSchema>
 
 // Prompt
 const sentimentPrompt = PromptTemplate.fromTemplate(`
-You are an expert customer experience analyst. Analyze the sentiment of the following customer feedback with precision and empathy.
+You are an expert customer experience analyst. 
+Analyze the sentiment of the following customer feedback with precision and empathy.
 
 Consider:
 - Overall sentiment (positive, negative, neutral)
@@ -36,14 +37,17 @@ Customer Feedback: {feedback}
 {format_instructions}
 `)
 
+type SentimentInput = { feedback: string }
+
 // Runnable
 export const createSentimentRunnable = (llm: ChatGoogleGenerativeAI) => {
   const outputParser = StructuredOutputParser.fromZodSchema(SentimentSchema)
+  const formatInstructions = outputParser.getFormatInstructions()
 
   return RunnableSequence.from([
     {
-      feedback: (input: { feedback: string }) => input.feedback,
-      format_instructions: () => outputParser.getFormatInstructions(),
+      feedback: (input: SentimentInput) => input.feedback,
+      format_instructions: () => formatInstructions,
     },
     sentimentPrompt,
     llm,

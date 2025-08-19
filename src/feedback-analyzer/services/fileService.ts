@@ -43,13 +43,3 @@ export const saveAnalysis = async (
 
   return outputPath
 }
-
-export const listInputFiles = async (): Promise<string[]> => {
-  try {
-    const inputDir = path.join(process.cwd(), "input")
-    const files = await fs.readdir(inputDir)
-    return files.filter((file) => file.endsWith(".txt"))
-  } catch (error) {
-    return []
-  }
-}
