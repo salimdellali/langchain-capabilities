@@ -15,14 +15,19 @@ export const createPipeline = (llm: ChatGoogleGenerativeAI) => {
 
   return RunnableSequence.from([
     // Stage 1: Sentiment Analysis Chain
+    // context has { feedback }
     RunnablePassthrough.assign({
       sentiment_analysis: sentimentRunnable,
     }),
+
     // Stage 2: Issues Identification Chain
+    // context has { feedback, sentiment_analysis }
     RunnablePassthrough.assign({
       issues_analysis: issuesRunnable,
     }),
+
     // Stage 3: Action Plan Generation Chain
+    // context has { feedback, sentiment_analysis, issues_analysis }
     RunnablePassthrough.assign({
       action_plan: actionRunnable,
     }),

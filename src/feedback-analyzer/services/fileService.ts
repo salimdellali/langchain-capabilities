@@ -1,5 +1,8 @@
 import fs from "fs/promises"
 import path from "path"
+import { Sentiment } from "../chains/sentiment"
+import { Issues } from "../chains/issues"
+import { Actions } from "../chains/actions"
 
 export interface AnalysisResult {
   metadata: {
@@ -12,9 +15,9 @@ export interface AnalysisResult {
     word_count: number
   }
   results: {
-    sentiment: any
-    issues: any
-    actions: any
+    sentiment: Sentiment
+    issues: Issues
+    actions: Actions
   }
 }
 
