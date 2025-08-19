@@ -38,9 +38,7 @@ Customer Feedback: {feedback}
 
 // Runnable
 export const createSentimentRunnable = (llm: ChatGoogleGenerativeAI) => {
-  const outputParser = StructuredOutputParser.fromZodSchema(
-    SentimentSchema
-  ) as StructuredOutputParser<SentimentAnalysis>
+  const outputParser = StructuredOutputParser.fromZodSchema(SentimentSchema)
 
   return RunnableSequence.from([
     {

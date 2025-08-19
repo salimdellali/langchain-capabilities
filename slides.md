@@ -9,6 +9,7 @@ marp: true
   - to model calls
   - and output parsing
 - Making it easier to build robust AI-powered applications and workflows.
+- Using the following LangChain.js packages: `langchain` `@langchain/core` and `langchain/google-genai`
 - NOTE:
   - There is also `LangChain` for `Python`
 
@@ -17,7 +18,7 @@ marp: true
 # Intro
 
 - Using `gemini-2.0-flash` LLM by Google, get a free API key on [AI Studio](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjPtaqyiJKPAxUjj4kEHSNDEjQQFnoECAoQAQ&url=https%3A%2F%2Faistudio.google.com%2F&usg=AOvVaw2ado6WVRi8CYsaHcreSChK&opi=89978449)
-  - `temperature` controls the randomness of the output, range: [0, 2]
+  - `temperature` controls the randomness of the output, range: [0, 1]
 - `promptTemplate` is the prompt to be sent to the LLM, it expects 2 arguments: `topic` and `nbWords`
 - `stringOutputParser` is a way to instruct the LLM to return the response as `string`
 - `chain` is what we call a Runnable, the `chain` is simple for now, and in this case it means

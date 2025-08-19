@@ -9,7 +9,7 @@ import { StringOutputParser } from "@langchain/core/output_parsers"
 const model = new ChatGoogleGenerativeAI({
   apiKey: process.env.GEMINI_API_KEY!,
   model: "gemini-2.0-flash",
-  temperature: 2, // 2 for most creative
+  temperature: 1, // 1 for most creative
 })
 
 // Create a prompt template
