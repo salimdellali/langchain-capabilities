@@ -19,12 +19,12 @@ Consider:
 - Resource allocation and ROI
 
 Original Feedback: {feedback}
-Sentiment Analysis: {sentiment_analysis}
-Identified Issues: {issues_analysis}
+Sentiment Analysis: {sentimentAnalysis}
+Identified Issues: {issuesAnalysis}
 
 Create actionable recommendations with clear ownership and timelines.
 
-{format_instructions}
+{formatInstructions}
 `)
 
 // Schema
@@ -52,8 +52,8 @@ export type Actions = z.infer<typeof ActionsSchema>
 
 type ActionsInput = {
   feedback: string
-  sentiment_analysis: Sentiment
-  issues_analysis: Issues
+  sentimentAnalysis: Sentiment
+  issuesAnalysis: Issues
 }
 
 // Runnable
@@ -64,11 +64,11 @@ export const createActionRunnable = (llm: ChatGoogleGenerativeAI) => {
   return RunnableSequence.from([
     {
       feedback: (input: ActionsInput) => input.feedback,
-      sentiment_analysis: (input: ActionsInput) =>
-        JSON.stringify(input.sentiment_analysis),
-      issues_analysis: (input: ActionsInput) =>
-        JSON.stringify(input.issues_analysis),
-      format_instructions: () => formatInstructions,
+      sentimentAnalysis: (input: ActionsInput) =>
+        JSON.stringify(input.sentimentAnalysis),
+      issuesAnalysis: (input: ActionsInput) =>
+        JSON.stringify(input.issuesAnalysis),
+      formatInstructions: () => formatInstructions,
     },
     actionsPrompt,
     llm,

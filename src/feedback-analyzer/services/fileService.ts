@@ -6,13 +6,13 @@ import { Actions } from "../chains/actions"
 
 export interface AnalysisResult {
   metadata: {
-    analysis_id: string
+    analysisId: string
     timestamp: string
-    processing_time_ms: number
+    processingTimeMs: number
   }
   input: {
     feedback: string
-    word_count: number
+    wordCount: number
   }
   results: {
     sentiment: Sentiment

@@ -17,19 +17,19 @@ export const createPipeline = (llm: ChatGoogleGenerativeAI) => {
     // Stage 1: Sentiment Analysis Chain
     // context has { feedback }
     RunnablePassthrough.assign({
-      sentiment_analysis: sentimentRunnable,
+      sentimentAnalysis: sentimentRunnable,
     }),
 
     // Stage 2: Issues Identification Chain
-    // context has { feedback, sentiment_analysis }
+    // context has { feedback, sentimentAnalysis }
     RunnablePassthrough.assign({
-      issues_analysis: issuesRunnable,
+      issuesAnalysis: issuesRunnable,
     }),
 
     // Stage 3: Action Plan Generation Chain
-    // context has { feedback, sentiment_analysis, issues_analysis }
+    // context has { feedback, sentimentAnalysis, issuesAnalysis }
     RunnablePassthrough.assign({
-      action_plan: actionRunnable,
+      actionPlan: actionRunnable,
     }),
   ])
 }
@@ -46,18 +46,18 @@ export const executePipeline = async (
 
   return {
     metadata: {
-      analysis_id: `analysis_${Date.now()}`,
+      analysisId: `analysis_${Date.now()}`,
       timestamp: new Date().toISOString(),
-      processing_time_ms: processingTime,
+      processingTimeMs: processingTime,
     },
     input: {
       feedback,
-      word_count: feedback.split(" ").length,
+      wordCount: feedback.split(" ").length,
     },
     results: {
-      sentiment: result.sentiment_analysis,
-      issues: result.issues_analysis,
-      actions: result.action_plan,
+      sentiment: result.sentimentAnalysis,
+      issues: result.issuesAnalysis,
+      actions: result.actionPlan,
     },
   }
 }

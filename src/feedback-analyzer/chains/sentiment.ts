@@ -17,7 +17,7 @@ Consider:
 
 Customer Feedback: {feedback}
 
-{format_instructions}
+{formatInstructions}
 `)
 
 // Schema
@@ -47,7 +47,7 @@ export const createSentimentRunnable = (llm: ChatGoogleGenerativeAI) => {
   return RunnableSequence.from([
     {
       feedback: (input: SentimentInput) => input.feedback,
-      format_instructions: () => formatInstructions,
+      formatInstructions: () => formatInstructions,
     },
     sentimentPrompt,
     llm,

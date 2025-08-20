@@ -17,9 +17,9 @@ Focus on:
 - Specific operational failures
 
 Original Feedback: {feedback}
-Sentiment Analysis: {sentiment_analysis}
+Sentiment Analysis: {sentimentAnalysis}
 
-{format_instructions}
+{formatInstructions}
 `)
 
 // Schema
@@ -44,7 +44,7 @@ export const IssuesSchema = z.object({
 
 export type Issues = z.infer<typeof IssuesSchema>
 
-type IssuesInput = { feedback: string; sentiment_analysis: Sentiment }
+type IssuesInput = { feedback: string; sentimentAnalysis: Sentiment }
 
 // Runnable
 export const createIssuesRunnable = (llm: ChatGoogleGenerativeAI) => {
@@ -54,9 +54,9 @@ export const createIssuesRunnable = (llm: ChatGoogleGenerativeAI) => {
   return RunnableSequence.from([
     {
       feedback: (input: IssuesInput) => input.feedback,
-      sentiment_analysis: (input: IssuesInput) =>
-        JSON.stringify(input.sentiment_analysis),
-      format_instructions: () => formatInstructions,
+      sentimentAnalysis: (input: IssuesInput) =>
+        JSON.stringify(input.sentimentAnalysis),
+      formatInstructions: () => formatInstructions,
     },
     issuesPrompt,
     llm,

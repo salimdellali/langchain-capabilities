@@ -18,20 +18,20 @@ const createLLM = (): ChatGoogleGenerativeAI => {
   })
 }
 
-const analyzeFeedback = async (feedbackPath: string) => {
-  if (!feedbackPath) {
-    console.log("❌ Please provide feedback file path")
-    console.log("Usage: npm start input/negative-feedback.txt")
+const analyzeFeedback = async (feedbackFile: string) => {
+  if (!feedbackFile) {
+    console.log("❌ Please provide feedback file")
+    console.log("Usage: npm run:feedback negative-feedback.txt")
     process.exit(1)
   }
 
-  console.log("🚀 LangChain.js Feedback Analysis")
+  console.log("🦜🔗 LangChain.js Feedback Analysis")
 
   try {
     const llm = createLLM()
-    const feedback = await readFeedback(feedbackPath)
+    const feedback = await readFeedback(feedbackFile)
 
-    console.log(`📄 Processing: ${feedbackPath}`)
+    console.log(`📄 Processing: ${feedbackFile}`)
     const analysis = await executePipeline(feedback, llm)
 
     const outputPath = await saveAnalysis(analysis)
@@ -44,8 +44,8 @@ const analyzeFeedback = async (feedbackPath: string) => {
 
 // Main execution
 const main = async () => {
-  const feedbackPath = process.argv[2]
-  await analyzeFeedback(feedbackPath)
+  const feedbackFile = process.argv[2]
+  await analyzeFeedback(feedbackFile)
 }
 
 main().catch(console.error)
