@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "analysis_id": "analysis_1755651807156",
+    "timestamp": "2025-08-20T01:03:27.156Z",
+    "processing_time_ms": 2999
+  },
+  "input": {
+    "feedback": "I absolutely love my recent purchase! The new smartwatch exceeded all my expectations. It arrived a day earlier than promised, and the packaging was beautiful - clearly a lot of thought went into the unboxing experience.\n\nThe product quality is outstanding. The display is crisp, the battery lasts longer than advertised, and all the health tracking features work flawlessly. The companion app is intuitive and syncs perfectly with my phone.\n\nWhen I had a question about customizing watch faces, customer support responded within 2 hours with a detailed, helpful explanation. The representative even followed up the next day to make sure everything was working well.\n\nThis is exactly the kind of experience that builds brand loyalty. I've already recommended your products to three friends, and I'm planning to upgrade my headphones to your brand as well. Keep up the excellent work!",
+    "word_count": 138
+  },
+  "results": {
+    "sentiment": {
+      "sentiment": "positive",
+      "confidence": 0.99,
+      "reasoning": "The customer expresses strong positive feelings ('absolutely love,' 'exceeded all expectations,' 'outstanding,' 'intuitive,' 'perfectly'). They praise various aspects of the product and customer service, and indicate strong brand loyalty through recommendations and future purchase plans."
+    },
+    "issues": {
+      "issues": [],
+      "primaryConcern": "No issues identified in this positive feedback."
+    },
+    "actions": {
+      "priority": "low",
+      "actions": [
+        {
+          "task": "Share feedback with product development team to highlight successful features (display, battery life, health tracking, app sync).",
+          "owner": "Product",
+          "timeline": "1week"
+        },
+        {
+          "task": "Share feedback with marketing team to leverage positive comments in testimonials or case studies.",
+          "owner": "Marketing",
+          "timeline": "1month"
+        },
+        {
+          "task": "Share feedback with customer support team to acknowledge and reinforce excellent service practices.",
+          "owner": "Customer Support",
+          "timeline": "immediate"
+        },
+        {
+          "task": "Document the successful packaging and unboxing experience for future product launches.",
+          "owner": "Operations",
+          "timeline": "1week"
+        }
+      ],
+      "followUpRequired": false
+    }
+  }
+}

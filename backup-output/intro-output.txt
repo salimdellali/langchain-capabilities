@@ -1,0 +1,6 @@
+> langchain-capabilities@1.0.0 run:intro
+> node --no-warnings --loader ts-node/esm src/intro/index.ts
+
+[dotenv@17.2.1] injecting env (1) from .env -- tip: 📡 observe env with Radar: https://dotenvx.com/radar
+LLM Response:
+France considered Algeria an integral part of France, not a colony, leading to prolonged conflict and resistance for independence.

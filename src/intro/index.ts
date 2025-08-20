@@ -5,8 +5,8 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai"
 import { PromptTemplate } from "@langchain/core/prompts"
 import { StringOutputParser } from "@langchain/core/output_parsers"
 
-// Initialize the model
-const model = new ChatGoogleGenerativeAI({
+// Initialize the llm
+const llm = new ChatGoogleGenerativeAI({
   apiKey: process.env.GEMINI_API_KEY!,
   model: "gemini-2.0-flash",
   temperature: 1, // 1 for most creative
@@ -21,7 +21,7 @@ const promptTemplate = PromptTemplate.fromTemplate(
 const stringOutputParser = new StringOutputParser()
 
 // Chain them together
-const chain = promptTemplate.pipe(model).pipe(stringOutputParser)
+const chain = promptTemplate.pipe(llm).pipe(stringOutputParser)
 
 // Use the chain
 async function main(): Promise<void> {
@@ -31,7 +31,7 @@ async function main(): Promise<void> {
       nbWords: 20,
     })
 
-    console.log("AI Response:")
+    console.log("LLM Response:")
     console.log(result)
   } catch (error) {
     console.error("Error:", error)

@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "analysis_id": "analysis_1755651821951",
+    "timestamp": "2025-08-20T01:03:41.951Z",
+    "processing_time_ms": 7523
+  },
+  "input": {
+    "feedback": "I've been a loyal customer for over 3 years, but my recent experience was absolutely terrible. The premium headphones I ordered arrived 2 weeks late despite paying for expedited shipping. When the package finally arrived, the box was damaged and one of the headphones had a cracked housing.\n\nThe sound quality was disappointing with constant buzzing in the left ear piece. Customer service put me on hold for 45 minutes, transferred me 3 times, and the final representative was rude and unhelpful. They told me I couldn't get a full refund after 16 days, only store credit.\n\nI paid $300 for premium product and service but received neither. I'm seriously considering switching to your competitor if this isn't resolved immediately. I expect either a full refund or replacement shipped overnight at no charge, plus compensation for my time and frustration.",
+    "word_count": 138
+  },
+  "results": {
+    "sentiment": {
+      "sentiment": "negative",
+      "confidence": 0.95,
+      "reasoning": "The customer expresses extreme dissatisfaction due to late delivery, damaged product, poor sound quality, and terrible customer service experience. They are a long-term loyal customer threatening to switch to a competitor, indicating high negative sentiment."
+    },
+    "issues": {
+      "issues": [
+        {
+          "category": "delivery",
+          "description": "Expedited shipping was paid for but the order arrived 2 weeks late.",
+          "severity": "high"
+        },
+        {
+          "category": "product",
+          "description": "The product arrived with a damaged box and a cracked headphone housing.",
+          "severity": "high"
+        },
+        {
+          "category": "product",
+          "description": "The left earpiece of the headphone has constant buzzing, indicating a manufacturing defect or damage during transit.",
+          "severity": "high"
+        },
+        {
+          "category": "service",
+          "description": "Customer service wait times were excessive (45 minutes on hold) and the customer was transferred multiple times (3 times).",
+          "severity": "high"
+        },
+        {
+          "category": "service",
+          "description": "The final customer service representative was rude and unhelpful.",
+          "severity": "high"
+        },
+        {
+          "category": "billing",
+          "description": "The customer was denied a full refund and only offered store credit despite receiving a damaged and defective product.",
+          "severity": "high"
+        }
+      ],
+      "primaryConcern": "The combination of late delivery, damaged product, and poor customer service leading to denial of a full refund is the most critical issue. This negatively impacts customer trust and loyalty and requires immediate attention to prevent customer churn."
+    },
+    "actions": {
+      "priority": "critical",
+      "actions": [
+        {
+          "task": "Immediately issue a full refund to the customer.",
+          "owner": "Customer Service",
+          "timeline": "immediate"
+        },
+        {
+          "task": "Ship a replacement set of headphones overnight at no charge to the customer.",
+          "owner": "Shipping",
+          "timeline": "immediate"
+        },
+        {
+          "task": "Draft a sincere apology email acknowledging the multiple failures and expressing empathy for the customer's frustration. Include confirmation of the refund and replacement shipment.",
+          "owner": "Customer Service",
+          "timeline": "24h"
+        },
+        {
+          "task": "Offer a significant discount (e.g., 50% off) on the customer's next purchase as compensation for their time and inconvenience.",
+          "owner": "Customer Service",
+          "timeline": "24h"
+        },
+        {
+          "task": "Investigate the cause of the shipping delay with the shipping provider and implement corrective actions to prevent future occurrences.",
+          "owner": "Logistics",
+          "timeline": "1week"
+        },
+        {
+          "task": "Inspect the returned headphones to identify the root cause of the buzzing and cracked housing. Escalate findings to the Quality Assurance team.",
+          "owner": "Quality Assurance",
+          "timeline": "1week"
+        },
+        {
+          "task": "Review customer service call recordings and transcripts to identify areas for improvement in agent training and communication skills. Provide coaching to the representative involved in this case.",
+          "owner": "Customer Service Management",
+          "timeline": "1week"
+        },
+        {
+          "task": "Evaluate the current refund policy and consider extending the return window for premium products to provide more flexibility for customers.",
+          "owner": "Policy Team",
+          "timeline": "1month"
+        },
+        {
+          "task": "Implement a quality control check before shipping to ensure products are not damaged.",
+          "owner": "Warehouse",
+          "timeline": "1week"
+        }
+      ],
+      "followUpRequired": true
+    }
+  }
+}

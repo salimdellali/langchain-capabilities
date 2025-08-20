@@ -29,16 +29,13 @@ const analyzeFeedback = async (feedbackPath: string) => {
 
   try {
     const llm = createLLM()
-    const filename = feedbackPath.split("/").pop() || feedbackPath
-    const feedback = await readFeedback(filename)
+    const feedback = await readFeedback(feedbackPath)
 
     console.log(`📄 Processing: ${feedbackPath}`)
     const analysis = await executePipeline(feedback, llm)
 
     const outputPath = await saveAnalysis(analysis)
     console.log(`✅ Analysis complete: ${outputPath}`)
-
-    return { analysis, outputPath }
   } catch (error) {
     console.error("❌ Error:", (error as Error).message)
     process.exit(1)

@@ -51,7 +51,7 @@ export const executePipeline = async (
       processing_time_ms: processingTime,
     },
     input: {
-      feedback: feedback,
+      feedback,
       word_count: feedback.split(" ").length,
     },
     results: {

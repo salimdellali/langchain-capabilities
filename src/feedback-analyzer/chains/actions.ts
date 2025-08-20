@@ -6,6 +6,27 @@ import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
 import type { Sentiment } from "./sentiment.js"
 import type { Issues } from "./issues.js"
 
+// Prompt
+const actionsPrompt = PromptTemplate.fromTemplate(`
+You are a senior customer success manager creating an action plan. 
+Based on the analysis, develop a comprehensive, executable plan.
+
+Consider:
+- Immediate customer retention needs
+- Long-term relationship repair
+- Operational improvements
+- Prevention strategies
+- Resource allocation and ROI
+
+Original Feedback: {feedback}
+Sentiment Analysis: {sentiment_analysis}
+Identified Issues: {issues_analysis}
+
+Create actionable recommendations with clear ownership and timelines.
+
+{format_instructions}
+`)
+
 // Schema
 export const ActionsSchema = z.object({
   priority: z
@@ -28,26 +49,6 @@ export const ActionsSchema = z.object({
 })
 
 export type Actions = z.infer<typeof ActionsSchema>
-
-// Prompt
-const actionsPrompt = PromptTemplate.fromTemplate(`
-You are a senior customer success manager creating an action plan. Based on the analysis, develop a comprehensive, executable plan.
-
-Consider:
-- Immediate customer retention needs
-- Long-term relationship repair
-- Operational improvements
-- Prevention strategies
-- Resource allocation and ROI
-
-Original Feedback: {feedback}
-Sentiment Analysis: {sentiment_analysis}
-Identified Issues: {issues_analysis}
-
-Create actionable recommendations with clear ownership and timelines.
-
-{format_instructions}
-`)
 
 type ActionsInput = {
   feedback: string

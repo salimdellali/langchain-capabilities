@@ -5,6 +5,23 @@ import { PromptTemplate } from "@langchain/core/prompts"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
 import type { Sentiment } from "./sentiment.js"
 
+// Prompt
+const issuesPrompt = PromptTemplate.fromTemplate(`
+You are a business analyst specializing in customer experience. 
+Identify and categorize all issues from this customer feedback.
+
+Focus on:
+- Actionable problems the company can solve
+- Root causes, not just symptoms  
+- Business impact and customer experience effects
+- Specific operational failures
+
+Original Feedback: {feedback}
+Sentiment Analysis: {sentiment_analysis}
+
+{format_instructions}
+`)
+
 // Schema
 export const IssuesSchema = z.object({
   issues: z
@@ -26,22 +43,6 @@ export const IssuesSchema = z.object({
 })
 
 export type Issues = z.infer<typeof IssuesSchema>
-
-// Prompt
-const issuesPrompt = PromptTemplate.fromTemplate(`
-You are a business analyst specializing in customer experience. Identify and categorize all issues from this customer feedback.
-
-Focus on:
-- Actionable problems the company can solve
-- Root causes, not just symptoms  
-- Business impact and customer experience effects
-- Specific operational failures
-
-Original Feedback: {feedback}
-Sentiment Analysis: {sentiment_analysis}
-
-{format_instructions}
-`)
 
 type IssuesInput = { feedback: string; sentiment_analysis: Sentiment }
 
