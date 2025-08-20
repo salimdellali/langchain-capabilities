@@ -23,7 +23,7 @@ Sentiment Analysis: {sentimentAnalysis}
 `)
 
 // Schema
-export const IssuesSchema = z.object({
+const IssuesSchema = z.object({
   issues: z
     .array(
       z.object({
@@ -44,7 +44,7 @@ export const IssuesSchema = z.object({
 
 export type Issues = z.infer<typeof IssuesSchema>
 
-type IssuesInput = { feedback: string; sentimentAnalysis: Sentiment }
+type IssuesRunnableInput = { feedback: string; sentimentAnalysis: Sentiment }
 
 // Runnable
 export const createIssuesRunnable = (llm: ChatGoogleGenerativeAI) => {
@@ -53,8 +53,8 @@ export const createIssuesRunnable = (llm: ChatGoogleGenerativeAI) => {
 
   return RunnableSequence.from([
     {
-      feedback: (input: IssuesInput) => input.feedback,
-      sentimentAnalysis: (input: IssuesInput) =>
+      feedback: (input: IssuesRunnableInput) => input.feedback,
+      sentimentAnalysis: (input: IssuesRunnableInput) =>
         JSON.stringify(input.sentimentAnalysis),
       formatInstructions: () => formatInstructions,
     },

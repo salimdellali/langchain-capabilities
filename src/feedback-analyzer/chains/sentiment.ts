@@ -21,7 +21,7 @@ Customer Feedback: {feedback}
 `)
 
 // Schema
-export const SentimentSchema = z.object({
+const SentimentSchema = z.object({
   sentiment: z
     .enum(["positive", "negative", "neutral"])
     .describe("Overall sentiment of the feedback"),
@@ -37,7 +37,7 @@ export const SentimentSchema = z.object({
 
 export type Sentiment = z.infer<typeof SentimentSchema>
 
-type SentimentInput = { feedback: string }
+type SentimentRunnableInput = { feedback: string }
 
 // Runnable
 export const createSentimentRunnable = (llm: ChatGoogleGenerativeAI) => {
@@ -46,7 +46,7 @@ export const createSentimentRunnable = (llm: ChatGoogleGenerativeAI) => {
 
   return RunnableSequence.from([
     {
-      feedback: (input: SentimentInput) => input.feedback,
+      feedback: (input: SentimentRunnableInput) => input.feedback,
       formatInstructions: () => formatInstructions,
     },
     sentimentPrompt,

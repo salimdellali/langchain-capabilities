@@ -3,12 +3,9 @@ import {
   RunnablePassthrough,
 } from "@langchain/core/runnables"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
-import { createSentimentRunnable } from "../chains/sentiment.js"
-import { createIssuesRunnable } from "../chains/issues.js"
-import { createActionRunnable } from "../chains/actions.js"
-import { Sentiment } from "../chains/sentiment"
-import { Issues } from "../chains/issues"
-import { Actions } from "../chains/actions"
+import { createSentimentRunnable, Sentiment } from "../chains/sentiment.js"
+import { createIssuesRunnable, Issues } from "../chains/issues.js"
+import { createActionRunnable, Actions } from "../chains/actions.js"
 
 export interface FeedbackAnalysisResult {
   metadata: {

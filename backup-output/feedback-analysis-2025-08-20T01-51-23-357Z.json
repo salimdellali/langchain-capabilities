@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "analysisId": "analysis_1755654683357",
+    "timestamp": "2025-08-20T01:51:23.357Z",
+    "processingTimeMs": 6351
+  },
+  "input": {
+    "feedback": "I've been a loyal customer for over 3 years, but my recent experience was absolutely terrible. The premium headphones I ordered arrived 2 weeks late despite paying for expedited shipping. When the package finally arrived, the box was damaged and one of the headphones had a cracked housing.\n\nThe sound quality was disappointing with constant buzzing in the left ear piece. Customer service put me on hold for 45 minutes, transferred me 3 times, and the final representative was rude and unhelpful. They told me I couldn't get a full refund after 16 days, only store credit.\n\nI paid $300 for premium product and service but received neither. I'm seriously considering switching to your competitor if this isn't resolved immediately. I expect either a full refund or replacement shipped overnight at no charge, plus compensation for my time and frustration.",
+    "wordCount": 138
+  },
+  "results": {
+    "sentiment": {
+      "sentiment": "negative",
+      "confidence": 0.95,
+      "reasoning": "The customer expresses strong dissatisfaction due to late delivery, damaged product, poor sound quality, and frustrating customer service experience. They are a loyal customer considering switching to a competitor, indicating high negative sentiment."
+    },
+    "issues": {
+      "issues": [
+        {
+          "category": "delivery",
+          "description": "Order arrived 2 weeks late despite paying for expedited shipping.",
+          "severity": "high"
+        },
+        {
+          "category": "product",
+          "description": "Product arrived with a damaged box and cracked headphone housing.",
+          "severity": "high"
+        },
+        {
+          "category": "product",
+          "description": "Headphones have a constant buzzing sound in the left earpiece, indicating a manufacturing defect.",
+          "severity": "high"
+        },
+        {
+          "category": "service",
+          "description": "Customer service wait time was 45 minutes with multiple transfers.",
+          "severity": "high"
+        },
+        {
+          "category": "service",
+          "description": "Customer service representative was rude and unhelpful.",
+          "severity": "high"
+        },
+        {
+          "category": "billing",
+          "description": "Customer was denied a full refund and offered only store credit after 16 days, despite product defects and late delivery.",
+          "severity": "high"
+        }
+      ],
+      "primaryConcern": "The combination of late delivery, damaged product, and poor customer service is the primary concern, leading to a high risk of customer churn."
+    },
+    "actions": {
+      "priority": "critical",
+      "actions": [
+        {
+          "task": "Issue a full refund to the customer immediately.",
+          "owner": "Customer Service",
+          "timeline": "immediate"
+        },
+        {
+          "task": "Offer an additional gesture of goodwill, such as a discount code for future purchases or a free accessory.",
+          "owner": "Customer Service",
+          "timeline": "immediate"
+        },
+        {
+          "task": "Arrange for overnight shipping of a replacement headphone set (if the customer prefers replacement over refund).",
+          "owner": "Logistics",
+          "timeline": "24h"
+        },
+        {
+          "task": "Investigate the cause of the delayed shipping and implement corrective measures to prevent recurrence.",
+          "owner": "Logistics",
+          "timeline": "1week"
+        },
+        {
+          "task": "Review customer service call recordings and transcripts to identify areas for improvement in agent training and communication skills.",
+          "owner": "Customer Service Training",
+          "timeline": "1week"
+        },
+        {
+          "task": "Inspect the returned headphones to determine the root cause of the damage and buzzing sound. Escalate findings to the Quality Assurance team.",
+          "owner": "Quality Assurance",
+          "timeline": "1week"
+        },
+        {
+          "task": "Evaluate and update the refund policy to provide more flexibility in cases of damaged or defective products, especially for loyal customers.",
+          "owner": "Legal/Policy",
+          "timeline": "1month"
+        },
+        {
+          "task": "Implement a quality control check for all premium headphones before shipment to minimize the risk of sending out defective products.",
+          "owner": "Quality Assurance",
+          "timeline": "1month"
+        },
+        {
+          "task": "Optimize the customer service phone system to reduce wait times and improve call routing efficiency.",
+          "owner": "IT",
+          "timeline": "1month"
+        }
+      ],
+      "followUpRequired": true
+    }
+  }
+}

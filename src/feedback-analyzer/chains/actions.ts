@@ -28,7 +28,7 @@ Create actionable recommendations with clear ownership and timelines.
 `)
 
 // Schema
-export const ActionsSchema = z.object({
+const ActionsSchema = z.object({
   priority: z
     .enum(["low", "medium", "high", "critical"])
     .describe("Overall priority for this feedback"),
@@ -50,7 +50,7 @@ export const ActionsSchema = z.object({
 
 export type Actions = z.infer<typeof ActionsSchema>
 
-type ActionsInput = {
+type ActionsRunnableInput = {
   feedback: string
   sentimentAnalysis: Sentiment
   issuesAnalysis: Issues
@@ -63,10 +63,10 @@ export const createActionRunnable = (llm: ChatGoogleGenerativeAI) => {
 
   return RunnableSequence.from([
     {
-      feedback: (input: ActionsInput) => input.feedback,
-      sentimentAnalysis: (input: ActionsInput) =>
+      feedback: (input: ActionsRunnableInput) => input.feedback,
+      sentimentAnalysis: (input: ActionsRunnableInput) =>
         JSON.stringify(input.sentimentAnalysis),
-      issuesAnalysis: (input: ActionsInput) =>
+      issuesAnalysis: (input: ActionsRunnableInput) =>
         JSON.stringify(input.issuesAnalysis),
       formatInstructions: () => formatInstructions,
     },
