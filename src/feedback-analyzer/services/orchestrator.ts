@@ -6,7 +6,26 @@ import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
 import { createSentimentRunnable } from "../chains/sentiment.js"
 import { createIssuesRunnable } from "../chains/issues.js"
 import { createActionRunnable } from "../chains/actions.js"
-import type { AnalysisResult } from "./fileService.js"
+import { Sentiment } from "../chains/sentiment"
+import { Issues } from "../chains/issues"
+import { Actions } from "../chains/actions"
+
+export interface FeedbackAnalysisResult {
+  metadata: {
+    analysisId: string
+    timestamp: string
+    processingTimeMs: number
+  }
+  input: {
+    feedback: string
+    wordCount: number
+  }
+  results: {
+    sentiment: Sentiment
+    issues: Issues
+    actions: Actions
+  }
+}
 
 export const createPipeline = (llm: ChatGoogleGenerativeAI) => {
   const sentimentRunnable = createSentimentRunnable(llm)
@@ -37,7 +56,7 @@ export const createPipeline = (llm: ChatGoogleGenerativeAI) => {
 export const executePipeline = async (
   feedback: string,
   llm: ChatGoogleGenerativeAI
-): Promise<AnalysisResult> => {
+): Promise<FeedbackAnalysisResult> => {
   const startTime = Date.now()
   const pipeline = createPipeline(llm)
 
