@@ -2,14 +2,19 @@
 marp: true
 paginate: true
 header: TechGathering 2025-08-21
-footer: FOCI Solutions
+footer: Foci Solutions
+---
+
+# 🦜🔗 LangChain
+
+- `LangChain` is composed of 2 words:
+  - `Lang`: from "Language", refers the the use of Large Language Models (LLMs)
+  - `Chain`: refers to chaining LLMs together
+
 ---
 
 # 🦜🔗 LangChain.js (1/2)
 
-- `LangChain` stands for:
-  - `Lang`: from "Language", referring the the use of Large Language Models (LLMs)
-  - `Chain`: referring to chaining LLms together
 - `LangChain.js` Simplifies working with LLMs in `JS/TS` by providing tools to:
   - manage prompts
   - model calls
@@ -26,12 +31,12 @@ footer: FOCI Solutions
   - `@langchain/core` v0.3.0
   - `@langchain/google-genai` v0.1.0
 - Using `gemini-2.0-flash` LLM by Google, get a free API key on [AI Studio](https://aistudio.google.com)
+  - Backup `gpt-4.1` LLM by OpenAI, in case Gemini will not work 🤷‍♂️
 
 ---
 
 # Intro (1/2)
 
-- `temperature` controls the randomness of the output, range: `[0, 1]`
 - `promptTemplate` is the prompt to be sent to the LLM, it expects 2 prompt variables:
   - `topic`
   - `nbWords`
@@ -48,8 +53,7 @@ footer: FOCI Solutions
   - we pass `topic` and `nbWords` as prompt variables
   - store the result in `result`
 
-- NOTE:
-  - IntelliSense will complain if there is a mismatch in the prompt variable names (show example)
+- NOTE: IntelliSense will complain if there is a mismatch in the prompt variable names (show example)
 
 ---
 
@@ -83,3 +87,10 @@ footer: FOCI Solutions
 # Feedback Analyzer (3/3)
 
 - Assemble `feedback`, `sentiment`, `issues`, and `actions` into a single comprehensive JSON file
+
+---
+
+# Considerations
+
+- Depending on the length of the chain, it could become quite expensive
+  - in our case, 3 separate LLM calls are being made for each `feedback-analyzer` execution
