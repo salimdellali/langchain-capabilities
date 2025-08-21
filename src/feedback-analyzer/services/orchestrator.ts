@@ -3,6 +3,7 @@ import {
   RunnablePassthrough,
 } from "@langchain/core/runnables"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
+import type { AzureChatOpenAI } from "@langchain/openai"
 import { createSentimentRunnable, Sentiment } from "../chains/sentiment.js"
 import { createIssuesRunnable, Issues } from "../chains/issues.js"
 import { createActionRunnable, Actions } from "../chains/actions.js"
@@ -24,7 +25,9 @@ export interface FeedbackAnalysisResult {
   }
 }
 
-export const createPipeline = (llm: ChatGoogleGenerativeAI) => {
+export const createPipeline = (
+  llm: ChatGoogleGenerativeAI | AzureChatOpenAI
+) => {
   const sentimentRunnable = createSentimentRunnable(llm)
   const issuesRunnable = createIssuesRunnable(llm)
   const actionRunnable = createActionRunnable(llm)
@@ -52,7 +55,7 @@ export const createPipeline = (llm: ChatGoogleGenerativeAI) => {
 
 export const executePipeline = async (
   feedback: string,
-  llm: ChatGoogleGenerativeAI
+  llm: ChatGoogleGenerativeAI | AzureChatOpenAI
 ): Promise<FeedbackAnalysisResult> => {
   const startTime = Date.now()
   const pipeline = createPipeline(llm)

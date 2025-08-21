@@ -3,6 +3,7 @@ import { RunnableSequence } from "@langchain/core/runnables"
 import { StructuredOutputParser } from "langchain/output_parsers"
 import { PromptTemplate } from "@langchain/core/prompts"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
+import type { AzureChatOpenAI } from "@langchain/openai"
 
 // Prompt
 const sentimentPrompt = PromptTemplate.fromTemplate(`
@@ -40,7 +41,9 @@ export type Sentiment = z.infer<typeof SentimentSchema>
 type SentimentRunnableInput = { feedback: string }
 
 // Runnable
-export const createSentimentRunnable = (llm: ChatGoogleGenerativeAI) => {
+export const createSentimentRunnable = (
+  llm: ChatGoogleGenerativeAI | AzureChatOpenAI
+) => {
   const outputParser = StructuredOutputParser.fromZodSchema(SentimentSchema)
   const formatInstructions = outputParser.getFormatInstructions()
 

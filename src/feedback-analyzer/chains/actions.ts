@@ -3,6 +3,7 @@ import { RunnableSequence } from "@langchain/core/runnables"
 import { StructuredOutputParser } from "langchain/output_parsers"
 import { PromptTemplate } from "@langchain/core/prompts"
 import type { ChatGoogleGenerativeAI } from "@langchain/google-genai"
+import type { AzureChatOpenAI } from "@langchain/openai"
 import type { Sentiment } from "./sentiment.js"
 import type { Issues } from "./issues.js"
 
@@ -57,7 +58,9 @@ type ActionsRunnableInput = {
 }
 
 // Runnable
-export const createActionRunnable = (llm: ChatGoogleGenerativeAI) => {
+export const createActionRunnable = (
+  llm: ChatGoogleGenerativeAI | AzureChatOpenAI
+) => {
   const outputParser = StructuredOutputParser.fromZodSchema(ActionsSchema)
   const formatInstructions = outputParser.getFormatInstructions()
 
