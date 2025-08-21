@@ -31,7 +31,7 @@ const promptTemplate = PromptTemplate.fromTemplate(
 const stringOutputParser = new StringOutputParser()
 
 // Chain them together
-const chain = promptTemplate.pipe(azureOpenAILLM).pipe(stringOutputParser)
+const chain = promptTemplate.pipe(geminiLLM).pipe(stringOutputParser)
 
 // Use the chain
 async function main(): Promise<void> {
